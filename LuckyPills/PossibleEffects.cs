@@ -10,10 +10,12 @@ namespace LuckyPills
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Exiled.API.Enums;
     using Exiled.API.Features;
     using Exiled.API.Features.Items;
     using LuckyPills.Interfaces;
     using MEC;
+    using MonoMod.Utils;
     using UnityEngine;
 
     /// <summary>
@@ -77,6 +79,15 @@ namespace LuckyPills
 
         private void Mutate(Player player, float duration)
         {
+            RoleType cachedMutatorRole = player.Role;
+            Dictionary<ItemType, ushort> ammo = player.Ammo;
+            player.DropItems();
+            player.SetRole(RoleType.Scp0492, SpawnReason.ForceClass, true);
+            Timing.CallDelayed(duration, () =>
+            {
+                player.SetRole(cachedMutatorRole, SpawnReason.ForceClass, true);
+                player.Ammo.AddRange(ammo);
+            });
         }
 
         private void Paper(Player player, float duration)
