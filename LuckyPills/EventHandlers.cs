@@ -47,6 +47,8 @@ namespace LuckyPills
             if (ev.Item.Type == ItemType.Painkillers)
             {
                 pillManager.RunEffect(ev.Player);
+                ev.Player.RemoveHeldItem();
+                ev.Player.CurrentItem = null;
             }
         }
     }

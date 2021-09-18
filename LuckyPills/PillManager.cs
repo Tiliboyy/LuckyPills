@@ -13,7 +13,7 @@ namespace LuckyPills
     using LuckyPills.Interfaces;
 
     /// <summary>
-    /// Handles the interactions between the player and the effect.
+    /// Handles the interactions between the player and the effects.
     /// </summary>
     public class PillManager
     {
