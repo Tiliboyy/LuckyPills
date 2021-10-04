@@ -8,7 +8,6 @@
 namespace LuckyPills
 {
     using System;
-    using System.Collections.Generic;
     using Exiled.API.Features;
     using LuckyPills.Interfaces;
 
@@ -36,10 +35,10 @@ namespace LuckyPills
         /// <param name="player">The player to run the effect for.</param>
         public void RunEffect(Player player)
         {
-            KeyValuePair<IPillEffect, Action<Player, float>> effect = possibleEffects.GetRandomEffect();
-            int duration = random.Next(effect.Key.MinimumDuration, effect.Key.MaximumDuration);
-            effect.Value(player, duration);
-            player.ShowHint(effect.Key.Translation.Replace("{duration}", duration.ToString()));
+            IPillEffect effect = possibleEffects.GetRandomEffect();
+            int duration = random.Next(effect.MinimumDuration, effect.MaximumDuration);
+            effect.RunEffect(player, duration);
+            player.ShowHint(effect.Translation.Replace("{duration}", duration.ToString()));
         }
     }
 }

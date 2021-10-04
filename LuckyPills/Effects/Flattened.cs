@@ -7,7 +7,10 @@
 
 namespace LuckyPills.Effects
 {
+    using Exiled.API.Features;
     using LuckyPills.Interfaces;
+    using MEC;
+    using UnityEngine;
 
     /// <inheritdoc />
     public class Flattened : IPillEffect
@@ -23,5 +26,12 @@ namespace LuckyPills.Effects
 
         /// <inheritdoc />
         public int MaximumDuration { get; set; } = 30;
+
+        /// <inheritdoc/>
+        public void RunEffect(Player player, int duration)
+        {
+            player.Scale = new Vector3(1f, 0.5f, 1f);
+            Timing.CallDelayed(duration, () => player.Scale = Vector3.one);
+        }
     }
 }

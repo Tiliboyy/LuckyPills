@@ -7,6 +7,8 @@
 
 namespace LuckyPills.Interfaces
 {
+    using Exiled.API.Features;
+
     /// <summary>
     /// Defines the contract for custom painkiller effects.
     /// </summary>
@@ -31,5 +33,12 @@ namespace LuckyPills.Interfaces
         /// Gets or sets the maximum duration of the effect.
         /// </summary>
         int MaximumDuration { get; set; }
+
+        /// <summary>
+        /// Runs the effect on the player who consumes the pills.
+        /// </summary>
+        /// <param name="player">The player to be affected.</param>
+        /// <param name="duration">The amount of time, in seconds, that the effect should last.</param>
+        void RunEffect(Player player, int duration);
     }
 }

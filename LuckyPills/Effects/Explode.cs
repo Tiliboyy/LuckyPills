@@ -7,6 +7,8 @@
 
 namespace LuckyPills.Effects
 {
+    using Exiled.API.Features;
+    using Exiled.API.Features.Items;
     using LuckyPills.Interfaces;
     using YamlDotNet.Serialization;
 
@@ -26,5 +28,11 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         [YamlIgnore]
         public int MaximumDuration { get; set; }
+
+        /// <inheritdoc />
+        public void RunEffect(Player player, int duration)
+        {
+            new ExplosiveGrenade(ItemType.GrenadeHE, player) { FuseTime = 0.1f }.SpawnActive(player.Position, player);
+        }
     }
 }

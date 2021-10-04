@@ -7,7 +7,9 @@
 
 namespace LuckyPills.Effects
 {
+    using Exiled.API.Features;
     using LuckyPills.Interfaces;
+    using MEC;
 
     /// <inheritdoc />
     public class God : IPillEffect
@@ -23,5 +25,12 @@ namespace LuckyPills.Effects
 
         /// <inheritdoc />
         public int MaximumDuration { get; set; } = 20;
+
+        /// <inheritdoc />
+        public void RunEffect(Player player, int duration)
+        {
+            player.IsGodModeEnabled = true;
+            Timing.CallDelayed(duration, () => player.IsGodModeEnabled = false);
+        }
     }
 }

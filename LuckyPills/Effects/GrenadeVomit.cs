@@ -7,7 +7,11 @@
 
 namespace LuckyPills.Effects
 {
+    using System.Collections.Generic;
+    using Exiled.API.Enums;
+    using Exiled.API.Features;
     using LuckyPills.Interfaces;
+    using MEC;
 
     /// <inheritdoc />
     public class GrenadeVomit : IPillEffect
@@ -23,5 +27,24 @@ namespace LuckyPills.Effects
 
         /// <inheritdoc />
         public int MaximumDuration { get; set; } = 30;
+
+        /// <inheritdoc />
+        public void RunEffect(Player player, int duration)
+        {
+            Timing.RunCoroutine(RunGrenadeVomit(player, duration));
+        }
+
+        private IEnumerator<float> RunGrenadeVomit(Player player, float duration)
+        {
+            for (int i = 0; i < duration * 10; i++)
+            {
+                if (!player.IsAlive)
+                    yield break;
+
+                // new ExplosiveGrenade(ItemType.GrenadeHE, player).SpawnActive(player.Position, player);
+                player.ThrowGrenade(GrenadeType.FragGrenade);
+                yield return Timing.WaitForSeconds(0.1f);
+            }
+        }
     }
 }
