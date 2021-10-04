@@ -13,6 +13,11 @@ namespace LuckyPills.Interfaces
     public interface IPillEffect
     {
         /// <summary>
+        /// Gets or sets a value indicating whether the modifier can be used.
+        /// </summary>
+        bool IsEnabled { get; set; }
+
+        /// <summary>
         /// Gets or sets the message to send to the player.
         /// </summary>
         string Translation { get; set; }

@@ -13,6 +13,9 @@ namespace LuckyPills.Effects
     public class GrenadeVomit : IPillEffect
     {
         /// <inheritdoc />
+        public bool IsEnabled { get; set; } = true;
+
+        /// <inheritdoc />
         public string Translation { get; set; } = "You've been given bomb vomit for {duration} seconds";
 
         /// <inheritdoc />

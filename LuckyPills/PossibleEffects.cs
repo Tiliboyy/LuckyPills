@@ -52,7 +52,7 @@ namespace LuckyPills
         /// <returns>The configured effect and action.</returns>
         public KeyValuePair<IPillEffect, Action<Player, float>> GetRandomEffect()
         {
-            return effects.ElementAt(random.Next(effects.Count));
+            return effects.Where(kvp => kvp.Key.IsEnabled).ElementAt(random.Next(effects.Count));
         }
 
         private void Explode(Player player, float duration)
@@ -109,7 +109,8 @@ namespace LuckyPills
                 if (!player.IsAlive)
                     yield break;
 
-                new ExplosiveGrenade(ItemType.GrenadeHE, player).SpawnActive(player.Position, player);
+                // new ExplosiveGrenade(ItemType.GrenadeHE, player).SpawnActive(player.Position, player);
+                player.ThrowGrenade(GrenadeType.FragGrenade);
                 yield return Timing.WaitForSeconds(0.1f);
             }
         }

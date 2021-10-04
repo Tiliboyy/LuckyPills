@@ -13,12 +13,15 @@ namespace LuckyPills.Effects
     public class God : IPillEffect
     {
         /// <inheritdoc />
-        public string Translation { get; set; }
+        public bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public int MinimumDuration { get; set; }
+        public string Translation { get; set; } = "You've been given god mode for {duration} seconds";
 
         /// <inheritdoc />
-        public int MaximumDuration { get; set; }
+        public int MinimumDuration { get; set; } = 5;
+
+        /// <inheritdoc />
+        public int MaximumDuration { get; set; } = 20;
     }
 }

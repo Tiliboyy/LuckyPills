@@ -13,12 +13,15 @@ namespace LuckyPills.Effects
     public class UpsideDown : IPillEffect
     {
         /// <inheritdoc />
-        public string Translation { get; set; }
+        public bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public int MinimumDuration { get; set; }
+        public string Translation { get; set; } = "You've been converted to australian for {duration} seconds";
 
         /// <inheritdoc />
-        public int MaximumDuration { get; set; }
+        public int MinimumDuration { get; set; } = 5;
+
+        /// <inheritdoc />
+        public int MaximumDuration { get; set; } = 30;
     }
 }

@@ -12,6 +12,9 @@ namespace LuckyPills.Effects
     /// <inheritdoc />
     public class Paper : IPillEffect
     {
+        /// <inheritdoc />
+        public bool IsEnabled { get; set; } = true;
+
         /// <inheritdoc/>
         public string Translation { get; set; } = "You've been turned into paper for {duration} seconds";
 

@@ -12,13 +12,16 @@ namespace LuckyPills.Effects
     /// <inheritdoc />
     public class Mutate : IPillEffect
     {
+        /// <inheritdoc />
+        public bool IsEnabled { get; set; } = true;
+
         /// <inheritdoc/>
-        public string Translation { get; set; }
+        public string Translation { get; set; } = "You've been mutated for {duration} seconds";
 
         /// <inheritdoc />
-        public int MinimumDuration { get; set; }
+        public int MinimumDuration { get; set; } = 5;
 
         /// <inheritdoc />
-        public int MaximumDuration { get; set; }
+        public int MaximumDuration { get; set; } = 30;
     }
 }

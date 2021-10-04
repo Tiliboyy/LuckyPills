@@ -13,12 +13,15 @@ namespace LuckyPills.Effects
     public class Flattened : IPillEffect
     {
         /// <inheritdoc />
-        public string Translation { get; set; }
+        public bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public int MinimumDuration { get; set; }
+        public string Translation { get; set; } = "You've been flattened for {duration} seconds";
 
         /// <inheritdoc />
-        public int MaximumDuration { get; set; }
+        public int MinimumDuration { get; set; } = 10;
+
+        /// <inheritdoc />
+        public int MaximumDuration { get; set; } = 30;
     }
 }

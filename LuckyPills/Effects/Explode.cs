@@ -8,17 +8,23 @@
 namespace LuckyPills.Effects
 {
     using LuckyPills.Interfaces;
+    using YamlDotNet.Serialization;
 
     /// <inheritdoc />
     public class Explode : IPillEffect
     {
         /// <inheritdoc />
-        public string Translation { get; set; }
+        public bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
+        public string Translation { get; set; } = "You've spontaneously combusted";
+
+        /// <inheritdoc />
+        [YamlIgnore]
         public int MinimumDuration { get; set; }
 
         /// <inheritdoc />
+        [YamlIgnore]
         public int MaximumDuration { get; set; }
     }
 }
