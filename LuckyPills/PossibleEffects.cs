@@ -24,7 +24,17 @@ namespace LuckyPills
         /// <param name="plugin">An instance of the plugin class.</param>
         public PossibleEffects(Plugin plugin)
         {
-            effects = plugin.Config.Effects;
+            effects = new IPillEffect[]
+            {
+                plugin.Config.Explode,
+                plugin.Config.Flattened,
+                plugin.Config.God,
+                plugin.Config.GrenadeVomit,
+                plugin.Config.Mutate,
+                plugin.Config.Paper,
+                plugin.Config.UpsideDown,
+            };
+
             random = Exiled.Loader.Loader.Random;
         }
 

@@ -41,7 +41,6 @@ namespace LuckyPills
             Exiled.Events.Handlers.Player.UsingItem -= OnUsingItem;
         }
 
-        /// <inheritdoc cref="Exiled.Events.Handlers.Player.OnUsingItem(UsingItemEventArgs)"/>
         private void OnUsingItem(UsingItemEventArgs ev)
         {
             if (ev.Item.Type == ItemType.Painkillers)

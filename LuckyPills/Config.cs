@@ -9,7 +9,6 @@ namespace LuckyPills
 {
     using Exiled.API.Interfaces;
     using LuckyPills.Effects;
-    using LuckyPills.Interfaces;
 
     /// <inheritdoc />
     public class Config : IConfig
@@ -17,18 +16,18 @@ namespace LuckyPills
         /// <inheritdoc/>
         public bool IsEnabled { get; set; } = true;
 
-        /// <summary>
-        /// Gets or sets the configs for all usable effects.
-        /// </summary>
-        public IPillEffect[] Effects { get; set; } =
-        {
-            new Explode(),
-            new Flattened(),
-            new God(),
-            new GrenadeVomit(),
-            new Mutate(),
-            new Paper(),
-            new UpsideDown(),
-        };
+        public Explode Explode { get; set; } = new Explode();
+
+        public Flattened Flattened { get; set; } = new Flattened();
+
+        public God God { get; set; } = new God();
+
+        public GrenadeVomit GrenadeVomit { get; set; } = new GrenadeVomit();
+
+        public Mutate Mutate { get; set; } = new Mutate();
+
+        public Paper Paper { get; set; } = new Paper();
+
+        public UpsideDown UpsideDown { get; set; } = new UpsideDown();
     }
 }

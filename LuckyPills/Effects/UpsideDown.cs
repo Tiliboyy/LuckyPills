@@ -31,7 +31,11 @@ namespace LuckyPills.Effects
         public void RunEffect(Player player, int duration)
         {
             player.Scale = new Vector3(1f, -1f, 1f);
-            Timing.CallDelayed(duration, () => player.Scale = Vector3.one);
+            Timing.CallDelayed(duration, () =>
+            {
+                player.Position += Vector3.up;
+                player.Scale = Vector3.one;
+            });
         }
     }
 }

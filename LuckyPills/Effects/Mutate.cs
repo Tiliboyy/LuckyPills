@@ -38,6 +38,9 @@ namespace LuckyPills.Effects
             player.SetRole(RoleType.Scp0492, SpawnReason.ForceClass, true);
             Timing.CallDelayed(duration, () =>
             {
+                if (player.IsDead)
+                    return;
+
                 player.SetRole(cachedMutatorRole, SpawnReason.ForceClass, true);
                 player.Ammo.AddRange(ammo);
             });
