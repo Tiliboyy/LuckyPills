@@ -23,10 +23,10 @@ namespace LuckyPills.Effects
         public string Translation { get; set; } = "You've been given bomb vomit for {duration} seconds";
 
         /// <inheritdoc />
-        public int MinimumDuration { get; set; } = 10;
+        public int MinimumDuration { get; set; } = 5;
 
         /// <inheritdoc />
-        public int MaximumDuration { get; set; } = 30;
+        public int MaximumDuration { get; set; } = 15;
 
         /// <summary>
         /// Gets or sets the amount of grenades a player should eject per second.
