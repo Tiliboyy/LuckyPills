@@ -28,6 +28,11 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         public int MaximumDuration { get; set; } = 30;
 
+        /// <summary>
+        /// Gets or sets the amount of grenades a player should eject per second.
+        /// </summary>
+        public int GrenadesPerSecond { get; set; } = 10;
+
         /// <inheritdoc />
         public void RunEffect(Player player, int duration)
         {
@@ -36,14 +41,14 @@ namespace LuckyPills.Effects
 
         private IEnumerator<float> RunGrenadeVomit(Player player, float duration)
         {
-            for (int i = 0; i < duration * 10; i++)
+            float delayTime = 1f / GrenadesPerSecond;
+            for (int i = 0; i < duration * GrenadesPerSecond; i++)
             {
                 if (!player.IsAlive)
                     yield break;
 
-                // new ExplosiveGrenade(ItemType.GrenadeHE, player).SpawnActive(player.Position, player);
                 player.ThrowGrenade(GrenadeType.FragGrenade);
-                yield return Timing.WaitForSeconds(0.1f);
+                yield return Timing.WaitForSeconds(delayTime);
             }
         }
     }

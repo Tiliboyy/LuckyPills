@@ -1,5 +1,5 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="Blinded.cs" company="Build">
+// -----------------------------------------------------------------------
+// <copyright file="Sinkhole.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
@@ -11,13 +11,13 @@ namespace LuckyPills.Effects
     using LuckyPills.Interfaces;
 
     /// <inheritdoc />
-    public class Blinded : IPillEffect
+    public class Sinkhole : IPillEffect
     {
         /// <inheritdoc />
         public bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public string Translation { get; set; } = "You've been blinded for {duration} seconds";
+        public string Translation { get; set; } = "You've been given a sinkhole effect for {duration} seconds";
 
         /// <inheritdoc />
         public int MinimumDuration { get; set; } = 10;
@@ -28,7 +28,7 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         public void RunEffect(Player player, int duration)
         {
-            player.EnableEffect<CustomPlayerEffects.Blinded>(duration);
+            player.EnableEffect<CustomPlayerEffects.SinkHole>(duration);
         }
     }
 }

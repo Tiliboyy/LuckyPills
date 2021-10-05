@@ -16,7 +16,6 @@ namespace LuckyPills
     public class PossibleEffects
     {
         private readonly IPillEffect[] effects;
-        private readonly System.Random random;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PossibleEffects"/> class.
@@ -26,16 +25,26 @@ namespace LuckyPills
         {
             effects = new IPillEffect[]
             {
+                plugin.Config.Amnesia,
+                plugin.Config.Bleeding,
+                plugin.Config.Blinded,
+                plugin.Config.Concussed,
+                plugin.Config.Corroding,
+                plugin.Config.Ensnared,
                 plugin.Config.Explode,
+                plugin.Config.Flashed,
                 plugin.Config.Flattened,
                 plugin.Config.God,
                 plugin.Config.GrenadeVomit,
+                plugin.Config.Hemorrhage,
+                plugin.Config.Invisible,
                 plugin.Config.Mutate,
                 plugin.Config.Paper,
+                plugin.Config.Poisoned,
+                plugin.Config.Sinkhole,
                 plugin.Config.UpsideDown,
+                plugin.Config.Visuals939,
             };
-
-            random = Exiled.Loader.Loader.Random;
         }
 
         /// <summary>
@@ -44,7 +53,7 @@ namespace LuckyPills
         /// <returns>The configured effect and action.</returns>
         public IPillEffect GetRandomEffect()
         {
-            return effects.Where(kvp => kvp.IsEnabled).ElementAt(random.Next(effects.Length));
+            return effects.Where(effect => effect.IsEnabled).ElementAt(Exiled.Loader.Loader.Random.Next(effects.Length));
         }
     }
 }

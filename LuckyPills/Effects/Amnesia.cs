@@ -10,19 +10,20 @@ namespace LuckyPills.Effects
     using Exiled.API.Features;
     using LuckyPills.Interfaces;
 
+    /// <inheritdoc />
     public class Amnesia : IPillEffect
     {
         /// <inheritdoc />
-        public bool IsEnabled { get; set; }
+        public bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public string Translation { get; set; }
+        public string Translation { get; set; } = "You've been given amnesia for {duration} seconds";
 
         /// <inheritdoc />
-        public int MinimumDuration { get; set; }
+        public int MinimumDuration { get; set; } = 10;
 
         /// <inheritdoc />
-        public int MaximumDuration { get; set; }
+        public int MaximumDuration { get; set; } = 20;
 
         /// <inheritdoc />
         public void RunEffect(Player player, int duration)
