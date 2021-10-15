@@ -8,31 +8,34 @@
 namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
-    using LuckyPills.Interfaces;
+    using LuckyPills.API;
     using YamlDotNet.Serialization;
 
     /// <inheritdoc />
-    public class Corroding : IPillEffect
+    public class Corroding : PillEffect
     {
         /// <inheritdoc />
-        public bool IsEnabled { get; set; } = true;
+        public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public string Translation { get; set; } = "You've been sent to the pocket dimension";
-
-        /// <inheritdoc />
-        [YamlIgnore]
-        public int MinimumDuration { get; set; } = 5;
+        public override string Translation { get; set; } = "You've been sent to the pocket dimension";
 
         /// <inheritdoc />
         [YamlIgnore]
-        public int MaximumDuration { get; set; } = 10;
+        public override int MinimumDuration { get; set; }
 
         /// <inheritdoc />
-        public void RunEffect(Player player, int duration)
+        [YamlIgnore]
+        public override int MaximumDuration { get; set; }
+
+        /// <inheritdoc />
+        public override int Odds { get; set; } = 1;
+
+        /// <inheritdoc />
+        public override void RunEffect(Player player, int duration)
         {
             player.ReferenceHub.scp106PlayerScript.GrabbedPosition = player.Position;
-            player.EnableEffect<CustomPlayerEffects.Corroding>(duration);
+            player.EnableEffect<CustomPlayerEffects.Corroding>();
         }
     }
 }

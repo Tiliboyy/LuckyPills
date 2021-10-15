@@ -8,26 +8,29 @@
 namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
-    using LuckyPills.Interfaces;
+    using LuckyPills.API;
     using MEC;
 
     /// <inheritdoc />
-    public class God : IPillEffect
+    public class God : PillEffect
     {
         /// <inheritdoc />
-        public bool IsEnabled { get; set; } = true;
+        public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public string Translation { get; set; } = "You've been given god mode for {duration} seconds";
+        public override string Translation { get; set; } = "You've been given god mode for {duration} seconds";
 
         /// <inheritdoc />
-        public int MinimumDuration { get; set; } = 5;
+        public override int MinimumDuration { get; set; } = 5;
 
         /// <inheritdoc />
-        public int MaximumDuration { get; set; } = 20;
+        public override int MaximumDuration { get; set; } = 20;
 
         /// <inheritdoc />
-        public void RunEffect(Player player, int duration)
+        public override int Odds { get; set; } = 1;
+
+        /// <inheritdoc />
+        public override void RunEffect(Player player, int duration)
         {
             player.IsGodModeEnabled = true;
             Timing.CallDelayed(duration, () => player.IsGodModeEnabled = false);

@@ -9,23 +9,20 @@ namespace LuckyPills
 {
     using System;
     using Exiled.API.Features;
-    using LuckyPills.Interfaces;
+    using LuckyPills.API;
 
     /// <summary>
     /// Handles the interactions between the player and the effects.
     /// </summary>
     public class PillManager
     {
-        private readonly PossibleEffects possibleEffects;
         private readonly Random random;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PillManager"/> class.
         /// </summary>
-        /// <param name="possibleEffects">An instance of the <see cref="PossibleEffects"/> class.</param>
-        public PillManager(PossibleEffects possibleEffects)
+        public PillManager()
         {
-            this.possibleEffects = possibleEffects;
             random = Exiled.Loader.Loader.Random;
         }
 
@@ -35,7 +32,7 @@ namespace LuckyPills
         /// <param name="player">The player to run the effect for.</param>
         public void RunEffect(Player player)
         {
-            IPillEffect effect = possibleEffects.GetRandomEffect();
+            PillEffect effect = PillEffect.GetRandom(random);
             int duration = random.Next(effect.MinimumDuration, effect.MaximumDuration);
             effect.RunEffect(player, duration);
             player.ShowHint(effect.Translation.Replace("{duration}", duration.ToString()));

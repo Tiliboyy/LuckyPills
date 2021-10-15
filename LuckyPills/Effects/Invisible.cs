@@ -8,26 +8,29 @@
 namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
-    using LuckyPills.Interfaces;
+    using LuckyPills.API;
     using MEC;
 
     /// <inheritdoc />
-    public class Invisible : IPillEffect
+    public class Invisible : PillEffect
     {
         /// <inheritdoc />
-        public bool IsEnabled { get; set; } = true;
+        public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public string Translation { get; set; } = "You've been turned invisible for {duration} seconds";
+        public override string Translation { get; set; } = "You've been turned invisible for {duration} seconds";
 
         /// <inheritdoc />
-        public int MinimumDuration { get; set; } = 10;
+        public override int MinimumDuration { get; set; } = 10;
 
         /// <inheritdoc />
-        public int MaximumDuration { get; set; } = 20;
+        public override int MaximumDuration { get; set; } = 20;
 
         /// <inheritdoc />
-        public void RunEffect(Player player, int duration)
+        public override int Odds { get; set; } = 1;
+
+        /// <inheritdoc />
+        public override void RunEffect(Player player, int duration)
         {
             player.IsInvisible = true;
             Timing.CallDelayed(duration, () => player.IsInvisible = false);

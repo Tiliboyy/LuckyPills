@@ -10,23 +10,26 @@ namespace LuckyPills.Effects
     using System.Collections.Generic;
     using Exiled.API.Enums;
     using Exiled.API.Features;
-    using LuckyPills.Interfaces;
+    using LuckyPills.API;
     using MEC;
 
     /// <inheritdoc />
-    public class GrenadeVomit : IPillEffect
+    public class GrenadeVomit : PillEffect
     {
         /// <inheritdoc />
-        public bool IsEnabled { get; set; } = true;
+        public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public string Translation { get; set; } = "You've been given bomb vomit for {duration} seconds";
+        public override string Translation { get; set; } = "You've been given bomb vomit for {duration} seconds";
 
         /// <inheritdoc />
-        public int MinimumDuration { get; set; } = 5;
+        public override int MinimumDuration { get; set; } = 5;
 
         /// <inheritdoc />
-        public int MaximumDuration { get; set; } = 15;
+        public override int MaximumDuration { get; set; } = 15;
+
+        /// <inheritdoc />
+        public override int Odds { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the amount of grenades a player should eject per second.
@@ -34,7 +37,7 @@ namespace LuckyPills.Effects
         public int GrenadesPerSecond { get; set; } = 10;
 
         /// <inheritdoc />
-        public void RunEffect(Player player, int duration)
+        public override void RunEffect(Player player, int duration)
         {
             Timing.RunCoroutine(RunGrenadeVomit(player, duration));
         }

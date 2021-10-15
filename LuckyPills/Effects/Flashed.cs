@@ -8,25 +8,28 @@
  namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
-    using LuckyPills.Interfaces;
+    using LuckyPills.API;
 
     /// <inheritdoc />
-    public class Flashed : IPillEffect
+    public class Flashed : PillEffect
     {
         /// <inheritdoc />
-        public bool IsEnabled { get; set; } = true;
+        public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public string Translation { get; set; } = "You've been flashed";
+        public override string Translation { get; set; } = "You've been flashed";
 
         /// <inheritdoc />
-        public int MinimumDuration { get; set; } = 5;
+        public override int MinimumDuration { get; set; } = 5;
 
         /// <inheritdoc />
-        public int MaximumDuration { get; set; } = 10;
+        public override int MaximumDuration { get; set; } = 10;
 
         /// <inheritdoc />
-        public void RunEffect(Player player, int duration)
+        public override int Odds { get; set; } = 1;
+
+        /// <inheritdoc />
+        public override void RunEffect(Player player, int duration)
         {
             player.EnableEffect<CustomPlayerEffects.Flashed>(duration);
         }

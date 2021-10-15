@@ -9,28 +9,31 @@ namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
     using Exiled.API.Features.Items;
-    using LuckyPills.Interfaces;
+    using LuckyPills.API;
     using YamlDotNet.Serialization;
 
     /// <inheritdoc />
-    public class Explode : IPillEffect
+    public class Explode : PillEffect
     {
         /// <inheritdoc />
-        public bool IsEnabled { get; set; } = true;
+        public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public string Translation { get; set; } = "You've spontaneously combusted";
-
-        /// <inheritdoc />
-        [YamlIgnore]
-        public int MinimumDuration { get; set; }
+        public override string Translation { get; set; } = "You've spontaneously combusted";
 
         /// <inheritdoc />
         [YamlIgnore]
-        public int MaximumDuration { get; set; }
+        public override int MinimumDuration { get; set; }
 
         /// <inheritdoc />
-        public void RunEffect(Player player, int duration)
+        [YamlIgnore]
+        public override int MaximumDuration { get; set; }
+
+        /// <inheritdoc />
+        public override int Odds { get; set; } = 1;
+
+        /// <inheritdoc />
+        public override void RunEffect(Player player, int duration)
         {
             new ExplosiveGrenade(ItemType.GrenadeHE, player) { FuseTime = 0.1f }.SpawnActive(player.Position, player);
         }

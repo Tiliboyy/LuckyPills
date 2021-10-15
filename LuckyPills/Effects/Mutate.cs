@@ -10,27 +10,30 @@ namespace LuckyPills.Effects
     using System.Collections.Generic;
     using Exiled.API.Enums;
     using Exiled.API.Features;
-    using LuckyPills.Interfaces;
+    using LuckyPills.API;
     using MEC;
     using MonoMod.Utils;
 
     /// <inheritdoc />
-    public class Mutate : IPillEffect
+    public class Mutate : PillEffect
     {
         /// <inheritdoc />
-        public bool IsEnabled { get; set; } = true;
+        public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc/>
-        public string Translation { get; set; } = "You've been mutated for {duration} seconds";
+        public override string Translation { get; set; } = "You've been mutated for {duration} seconds";
 
         /// <inheritdoc />
-        public int MinimumDuration { get; set; } = 5;
+        public override int MinimumDuration { get; set; } = 5;
 
         /// <inheritdoc />
-        public int MaximumDuration { get; set; } = 30;
+        public override int MaximumDuration { get; set; } = 30;
 
         /// <inheritdoc />
-        public void RunEffect(Player player, int duration)
+        public override int Odds { get; set; } = 1;
+
+        /// <inheritdoc />
+        public override void RunEffect(Player player, int duration)
         {
             RoleType cachedMutatorRole = player.Role;
             Dictionary<ItemType, ushort> ammo = player.Ammo;
