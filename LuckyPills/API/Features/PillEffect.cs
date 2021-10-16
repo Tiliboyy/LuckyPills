@@ -5,7 +5,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace LuckyPills.API
+namespace LuckyPills.API.Features
 {
     using System;
     using System.Collections.Generic;
@@ -17,6 +17,9 @@ namespace LuckyPills.API
     /// </summary>
     public abstract class PillEffect
     {
+        /// <inheritdoc cref="Exiled.Loader.Loader.Random"/>
+        protected static readonly Random Random = Exiled.Loader.Loader.Random;
+
         /// <summary>
         /// Gets all registered <see cref="PillEffect"/>s.
         /// </summary>
@@ -50,15 +53,20 @@ namespace LuckyPills.API
         /// <summary>
         /// Gets a random enabled and registered <see cref="PillEffect"/>.
         /// </summary>
-        /// <param name="random">An instance of the <see cref="Random"/> class.</param>
-        /// <returns>A random enabled and registered <see cref="PillEffect"/> or null if none exist.</returns>
-        public static PillEffect GetRandom(Random random)
+        /// <param name="player">The player to run the effect on.</param>
+        public static void RunRandom(Player player)
         {
             List<PillEffect> enabled = Registered.Where(effect => effect.IsEnabled).ToList();
             if (enabled.Count == 0)
-                return null;
+            {
+                Log.Warn("There are no enabled effects to select.");
+                return;
+            }
 
-            return enabled[random.Next(enabled.Count)];
+            PillEffect selectedEffect = enabled[Random.Next(enabled.Count)];
+            int duration = Random.Next(selectedEffect.MinimumDuration, selectedEffect.MaximumDuration);
+            selectedEffect.RunEffect(player, duration);
+            player.ShowHint(selectedEffect.Translation.Replace("{duration}", duration.ToString()));
         }
 
         /// <summary>

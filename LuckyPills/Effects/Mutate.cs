@@ -10,7 +10,7 @@ namespace LuckyPills.Effects
     using System.Collections.Generic;
     using Exiled.API.Enums;
     using Exiled.API.Features;
-    using LuckyPills.API;
+    using LuckyPills.API.Features;
     using MEC;
     using MonoMod.Utils;
 

@@ -7,8 +7,9 @@
 
 namespace LuckyPills.Effects
 {
+    using Exiled.API.Enums;
     using Exiled.API.Features;
-    using LuckyPills.API;
+    using LuckyPills.API.Features;
 
     /// <inheritdoc />
     public class Visuals939 : PillEffect
@@ -28,10 +29,16 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         public override int Odds { get; set; } = 1;
 
+        /// <summary>
+        /// Gets or sets the type of Scp939 visuals to give.
+        /// </summary>
+        public byte Intensity { get; set; } = 1;
+
         /// <inheritdoc />
         public override void RunEffect(Player player, int duration)
         {
             player.EnableEffect<CustomPlayerEffects.Visuals939>(duration);
+            player.GetEffect(EffectType.Visuals939).Intensity = Intensity;
         }
     }
 }

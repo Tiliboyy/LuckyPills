@@ -9,6 +9,7 @@ namespace LuckyPills
 {
     using System;
     using Exiled.API.Features;
+    using LuckyPills.API;
 
     /// <summary>
     /// The main plugin class.
@@ -16,7 +17,6 @@ namespace LuckyPills
     public class Plugin : Plugin<Config>
     {
         private EventHandlers eventHandlers;
-        private PillManager pillManager;
 
         /// <inheritdoc />
         public override string Author { get; } = "Build";
@@ -25,7 +25,7 @@ namespace LuckyPills
         public override string Name { get; } = "LuckyPills";
 
         /// <inheritdoc />
-        public override Version RequiredExiledVersion { get; } = new Version(3, 0, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(3, 0, 5);
 
         /// <inheritdoc />
         public override Version Version { get; } = new Version(1, 0, 0);
@@ -33,67 +33,70 @@ namespace LuckyPills
         /// <inheritdoc />
         public override void OnEnabled()
         {
-            RegisterEffects();
-            pillManager = new PillManager();
-            eventHandlers = new EventHandlers(pillManager);
+            eventHandlers = new EventHandlers();
             eventHandlers.Subscribe();
+
+            Config.LoadEffects();
+            RegisterEffects();
+
             base.OnEnabled();
         }
 
         /// <inheritdoc />
         public override void OnDisabled()
         {
+            UnregisterEffects();
+
             eventHandlers.Unsubscribe();
             eventHandlers = null;
-            pillManager = null;
-            UnregisterEffects();
+
             base.OnDisabled();
         }
 
         private void RegisterEffects()
         {
-            Config.Amnesia?.Register();
-            Config.Bleeding?.Register();
-            Config.Blinded?.Register();
-            Config.Concussed?.Register();
-            Config.Corroding?.Register();
-            Config.Ensnared?.Register();
-            Config.Explode?.Register();
-            Config.Flashed?.Register();
-            Config.Flattened?.Register();
-            Config.God?.Register();
-            Config.GrenadeVomit?.Register();
-            Config.Hemorrhage?.Register();
-            Config.Invisible?.Register();
-            Config.Mutate?.Register();
-            Config.Paper?.Register();
-            Config.Poisoned?.Register();
-            Config.Sinkhole?.Register();
-            Config.UpsideDown?.Register();
-            Config.Visuals939?.Register();
+            Config.EffectConfigs.Amnesia?.Register();
+            Config.EffectConfigs.Bleeding?.Register();
+            Config.EffectConfigs.Blinded?.Register();
+            Config.EffectConfigs.Concussed?.Register();
+            Config.EffectConfigs.Corroding?.Register();
+            Config.EffectConfigs.Ensnared?.Register();
+            Config.EffectConfigs.Explode?.Register();
+            Config.EffectConfigs.Flashed?.Register();
+            Config.EffectConfigs.Flattened?.Register();
+            Config.EffectConfigs.God?.Register();
+            Config.EffectConfigs.GrenadeVomit?.Register();
+            Config.EffectConfigs.Hemorrhage?.Register();
+            Config.EffectConfigs.Invisible?.Register();
+            Config.EffectConfigs.Mutate?.Register();
+            Config.EffectConfigs.Paper?.Register();
+            Config.EffectConfigs.Poisoned?.Register();
+            Config.EffectConfigs.Sinkhole?.Register();
+            Config.EffectConfigs.UpsideDown?.Register();
+            Config.EffectConfigs.Visuals939?.Register();
         }
 
         private void UnregisterEffects()
         {
-            Config.Amnesia?.Unregister();
-            Config.Bleeding?.Unregister();
-            Config.Blinded?.Unregister();
-            Config.Concussed?.Unregister();
-            Config.Corroding?.Unregister();
-            Config.Ensnared?.Unregister();
-            Config.Explode?.Unregister();
-            Config.Flashed?.Unregister();
-            Config.Flattened?.Unregister();
-            Config.God?.Unregister();
-            Config.GrenadeVomit?.Unregister();
-            Config.Hemorrhage?.Unregister();
-            Config.Invisible?.Unregister();
-            Config.Mutate?.Unregister();
-            Config.Paper?.Unregister();
-            Config.Poisoned?.Unregister();
-            Config.Sinkhole?.Unregister();
-            Config.UpsideDown?.Unregister();
-            Config.Visuals939?.Unregister();
+            Config.EffectConfigs.Amnesia?.Unregister();
+            Config.EffectConfigs.Bleeding?.Unregister();
+            Config.EffectConfigs.Blinded?.Unregister();
+            Config.EffectConfigs.Concussed?.Unregister();
+            Config.EffectConfigs.Corroding?.Unregister();
+            Config.EffectConfigs.Ensnared?.Unregister();
+            Config.EffectConfigs.Explode?.Unregister();
+            Config.EffectConfigs.Flashed?.Unregister();
+            Config.EffectConfigs.Flattened?.Unregister();
+            Config.EffectConfigs.God?.Unregister();
+            Config.EffectConfigs.GrenadeVomit?.Unregister();
+            Config.EffectConfigs.Hemorrhage?.Unregister();
+            Config.EffectConfigs.Invisible?.Unregister();
+            Config.EffectConfigs.Mutate?.Unregister();
+            Config.EffectConfigs.Paper?.Unregister();
+            Config.EffectConfigs.Poisoned?.Unregister();
+            Config.EffectConfigs.Sinkhole?.Unregister();
+            Config.EffectConfigs.UpsideDown?.Unregister();
+            Config.EffectConfigs.Visuals939?.Unregister();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace LuckyPills.Effects
     using System.Collections.Generic;
     using Exiled.API.Enums;
     using Exiled.API.Features;
-    using LuckyPills.API;
+    using LuckyPills.API.Features;
     using MEC;
 
     /// <inheritdoc />
@@ -32,6 +32,11 @@ namespace LuckyPills.Effects
         public override int Odds { get; set; } = 1;
 
         /// <summary>
+        /// Gets or sets the type of grenade to use.
+        /// </summary>
+        public GrenadeType GrenadeType { get; set; } = GrenadeType.FragGrenade;
+
+        /// <summary>
         /// Gets or sets the amount of grenades a player should eject per second.
         /// </summary>
         public int GrenadesPerSecond { get; set; } = 10;
@@ -50,7 +55,7 @@ namespace LuckyPills.Effects
                 if (!player.IsAlive)
                     yield break;
 
-                player.ThrowGrenade(GrenadeType.FragGrenade);
+                player.ThrowGrenade(GrenadeType);
                 yield return Timing.WaitForSeconds(delayTime);
             }
         }

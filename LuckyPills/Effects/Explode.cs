@@ -9,7 +9,7 @@ namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
     using Exiled.API.Features.Items;
-    using LuckyPills.API;
+    using LuckyPills.API.Features;
     using YamlDotNet.Serialization;
 
     /// <inheritdoc />

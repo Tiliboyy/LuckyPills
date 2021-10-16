@@ -8,7 +8,7 @@
 namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
-    using LuckyPills.API;
+    using LuckyPills.API.Features;
 
     /// <inheritdoc />
     public class Blinded : PillEffect
