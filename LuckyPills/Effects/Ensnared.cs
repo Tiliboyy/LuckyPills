@@ -31,7 +31,7 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         public override void RunEffect(Player player, int duration)
         {
-            player.EnableEffect<CustomPlayerEffects.Blinded>(duration);
+            player.EnableEffect<CustomPlayerEffects.Ensnared>(duration);
         }
     }
 }
