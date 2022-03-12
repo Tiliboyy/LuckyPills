@@ -33,9 +33,11 @@ namespace LuckyPills.Effects
         public override int Odds { get; set; } = 1;
 
         /// <inheritdoc />
-        public override void RunEffect(Player player, int duration)
+        protected override void OnEnabled(Player player, int duration)
         {
-            new ExplosiveGrenade(ItemType.GrenadeHE, player) { FuseTime = 0.1f }.SpawnActive(player.Position, player);
+            ExplosiveGrenade explosiveGrenade = (ExplosiveGrenade)Item.Create(ItemType.GrenadeHE);
+            explosiveGrenade.FuseTime = 0.1f;
+            explosiveGrenade.SpawnActive(player.Position, player);
         }
     }
 }

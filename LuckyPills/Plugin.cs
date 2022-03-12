@@ -19,22 +19,25 @@ namespace LuckyPills
         private EventHandlers eventHandlers;
 
         /// <inheritdoc />
-        public override string Author { get; } = "Build";
+        public override string Author => "Build";
 
         /// <inheritdoc />
-        public override string Name { get; } = "LuckyPills";
+        public override string Name => "LuckyPills";
 
         /// <inheritdoc />
-        public override Version RequiredExiledVersion { get; } = new Version(3, 0, 5);
+        public override string Prefix => "LuckyPills";
 
         /// <inheritdoc />
-        public override Version Version { get; } = new Version(1, 0, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(5, 0, 0);
+
+        /// <inheritdoc />
+        public override Version Version { get; } = new Version(1, 0, 1);
 
         /// <inheritdoc />
         public override void OnEnabled()
         {
             eventHandlers = new EventHandlers();
-            eventHandlers.Subscribe();
+            Exiled.Events.Handlers.Player.UsingItem += eventHandlers.OnUsingItem;
 
             Config.LoadEffects();
             RegisterEffects();
@@ -47,7 +50,7 @@ namespace LuckyPills
         {
             UnregisterEffects();
 
-            eventHandlers.Unsubscribe();
+            Exiled.Events.Handlers.Player.UsingItem -= eventHandlers.OnUsingItem;
             eventHandlers = null;
 
             base.OnDisabled();

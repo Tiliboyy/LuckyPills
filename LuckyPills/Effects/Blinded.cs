@@ -29,9 +29,15 @@ namespace LuckyPills.Effects
         public override int Odds { get; set; } = 1;
 
         /// <inheritdoc />
-        public override void RunEffect(Player player, int duration)
+        protected override void OnEnabled(Player player, int duration)
         {
             player.EnableEffect<CustomPlayerEffects.Blinded>(duration);
+        }
+
+        /// <inheritdoc />
+        protected override void OnDisabled(Player player)
+        {
+            player.DisableEffect<CustomPlayerEffects.Blinded>();
         }
     }
 }

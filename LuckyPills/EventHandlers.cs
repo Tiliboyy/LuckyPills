@@ -15,29 +15,13 @@ namespace LuckyPills
     /// </summary>
     public class EventHandlers
     {
-        /// <summary>
-        /// Subscribes to all required events.
-        /// </summary>
-        public void Subscribe()
-        {
-            Exiled.Events.Handlers.Player.UsingItem += OnUsingItem;
-        }
-
-        /// <summary>
-        /// Unsubscribes from all required events.
-        /// </summary>
-        public void Unsubscribe()
-        {
-            Exiled.Events.Handlers.Player.UsingItem -= OnUsingItem;
-        }
-
-        private void OnUsingItem(UsingItemEventArgs ev)
+        /// <inheritdoc cref="Exiled.Events.Handlers.Player.OnUsingItem(UsingItemEventArgs)"/>
+        public void OnUsingItem(UsingItemEventArgs ev)
         {
             if (ev.Item.Type == ItemType.Painkillers)
             {
                 PillEffect.RunRandom(ev.Player);
                 ev.Player.RemoveHeldItem();
-                ev.Player.CurrentItem = null;
             }
         }
     }

@@ -11,6 +11,7 @@ namespace LuckyPills.API.Features
     using System.Collections.Generic;
     using System.Linq;
     using Exiled.API.Features;
+    using MEC;
 
     /// <summary>
     /// Defines the contract for custom painkiller effects.
@@ -65,16 +66,10 @@ namespace LuckyPills.API.Features
 
             PillEffect selectedEffect = enabled[Random.Next(enabled.Count)];
             int duration = Random.Next(selectedEffect.MinimumDuration, selectedEffect.MaximumDuration);
-            selectedEffect.RunEffect(player, duration);
+            selectedEffect.OnEnabled(player, duration);
             player.ShowHint(selectedEffect.Translation.Replace("{duration}", duration.ToString()));
+            Timing.CallDelayed(duration, () => selectedEffect.OnDisabled(player));
         }
-
-        /// <summary>
-        /// Runs the effect on the player who consumes the pills.
-        /// </summary>
-        /// <param name="player">The player to be affected.</param>
-        /// <param name="duration">The amount of time, in seconds, that the effect should last.</param>
-        public abstract void RunEffect(Player player, int duration);
 
         /// <summary>
         /// Registers a <see cref="PillEffect"/>.
@@ -91,6 +86,21 @@ namespace LuckyPills.API.Features
         public void Unregister()
         {
             Registered.RemoveAll(effect => effect == this);
+        }
+
+        /// <summary>
+        /// Runs the effect on the player who consumes the pills.
+        /// </summary>
+        /// <param name="player">The player to be affected.</param>
+        /// <param name="duration">The amount of time, in seconds, that the effect should last.</param>
+        protected abstract void OnEnabled(Player player, int duration);
+
+        /// <summary>
+        /// Disables the effect on the player who consumed the pills.
+        /// </summary>
+        /// <param name="player">The player to be affected.</param>
+        protected virtual void OnDisabled(Player player)
+        {
         }
     }
 }

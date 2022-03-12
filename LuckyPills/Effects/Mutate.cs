@@ -11,12 +11,12 @@ namespace LuckyPills.Effects
     using Exiled.API.Enums;
     using Exiled.API.Features;
     using LuckyPills.API.Features;
-    using MEC;
-    using MonoMod.Utils;
 
     /// <inheritdoc />
     public class Mutate : PillEffect
     {
+        private readonly Dictionary<Player, RoleType> cachedRoles = new Dictionary<Player, RoleType>();
+
         /// <inheritdoc />
         public override bool IsEnabled { get; set; } = true;
 
@@ -33,20 +33,18 @@ namespace LuckyPills.Effects
         public override int Odds { get; set; } = 1;
 
         /// <inheritdoc />
-        public override void RunEffect(Player player, int duration)
+        protected override void OnEnabled(Player player, int duration)
         {
-            RoleType cachedMutatorRole = player.Role;
-            Dictionary<ItemType, ushort> ammo = player.Ammo;
+            cachedRoles[player] = player.Role;
             player.DropItems();
             player.SetRole(RoleType.Scp0492, SpawnReason.ForceClass, true);
-            Timing.CallDelayed(duration, () =>
-            {
-                if (player.IsDead)
-                    return;
+        }
 
-                player.SetRole(cachedMutatorRole, SpawnReason.ForceClass, true);
-                player.Ammo.AddRange(ammo);
-            });
+        /// <inheritdoc />
+        protected override void OnDisabled(Player player)
+        {
+            if (!player.IsDead && cachedRoles.TryGetValue(player, out RoleType role))
+                player.SetRole(role, SpawnReason.ForceClass, true);
         }
     }
 }

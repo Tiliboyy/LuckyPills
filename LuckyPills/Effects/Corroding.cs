@@ -32,7 +32,7 @@ namespace LuckyPills.Effects
         public override int Odds { get; set; } = 1;
 
         /// <inheritdoc />
-        public override void RunEffect(Player player, int duration)
+        protected override void OnEnabled(Player player, int duration)
         {
             player.ReferenceHub.scp106PlayerScript.GrabbedPosition = player.Position;
             player.EnableEffect<CustomPlayerEffects.Corroding>();

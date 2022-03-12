@@ -29,9 +29,15 @@
         public override int Odds { get; set; } = 1;
 
         /// <inheritdoc />
-        public override void RunEffect(Player player, int duration)
+        protected override void OnEnabled(Player player, int duration)
         {
             player.EnableEffect<CustomPlayerEffects.Flashed>(duration);
+        }
+
+        /// <inheritdoc />
+        protected override void OnDisabled(Player player)
+        {
+            player.DisableEffect<CustomPlayerEffects.Flashed>();
         }
     }
 }

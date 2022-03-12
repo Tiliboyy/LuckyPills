@@ -9,7 +9,6 @@ namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
     using LuckyPills.API.Features;
-    using MEC;
 
     /// <inheritdoc />
     public class Invisible : PillEffect
@@ -30,10 +29,15 @@ namespace LuckyPills.Effects
         public override int Odds { get; set; } = 1;
 
         /// <inheritdoc />
-        public override void RunEffect(Player player, int duration)
+        protected override void OnEnabled(Player player, int duration)
         {
             player.IsInvisible = true;
-            Timing.CallDelayed(duration, () => player.IsInvisible = false);
+        }
+
+        /// <inheritdoc />
+        protected override void OnDisabled(Player player)
+        {
+            player.IsInvisible = false;
         }
     }
 }

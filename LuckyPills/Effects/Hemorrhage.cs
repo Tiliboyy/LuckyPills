@@ -17,7 +17,7 @@ namespace LuckyPills.Effects
         public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public override string Translation { get; set; } = "You've begun to hemorrhage for the next";
+        public override string Translation { get; set; } = "You've begun to hemorrhage for the next {duration} seconds";
 
         /// <inheritdoc />
         public override int MinimumDuration { get; set; } = 10;
@@ -29,9 +29,15 @@ namespace LuckyPills.Effects
         public override int Odds { get; set; } = 1;
 
         /// <inheritdoc />
-        public override void RunEffect(Player player, int duration)
+        protected override void OnEnabled(Player player, int duration)
         {
             player.EnableEffect<CustomPlayerEffects.Hemorrhage>(duration);
+        }
+
+        /// <inheritdoc />
+        protected override void OnDisabled(Player player)
+        {
+            player.DisableEffect<CustomPlayerEffects.Hemorrhage>();
         }
     }
 }

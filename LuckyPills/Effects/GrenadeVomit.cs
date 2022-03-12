@@ -42,7 +42,7 @@ namespace LuckyPills.Effects
         public int GrenadesPerSecond { get; set; } = 10;
 
         /// <inheritdoc />
-        public override void RunEffect(Player player, int duration)
+        protected override void OnEnabled(Player player, int duration)
         {
             Timing.RunCoroutine(RunGrenadeVomit(player, duration));
         }

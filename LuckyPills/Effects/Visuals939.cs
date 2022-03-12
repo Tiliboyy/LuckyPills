@@ -35,10 +35,16 @@ namespace LuckyPills.Effects
         public byte Intensity { get; set; } = 1;
 
         /// <inheritdoc />
-        public override void RunEffect(Player player, int duration)
+        protected override void OnEnabled(Player player, int duration)
         {
             player.EnableEffect<CustomPlayerEffects.Visuals939>(duration);
             player.GetEffect(EffectType.Visuals939).Intensity = Intensity;
+        }
+
+        /// <inheritdoc />
+        protected override void OnDisabled(Player player)
+        {
+            player.DisableEffect<CustomPlayerEffects.Visuals939>();
         }
     }
 }
