@@ -7,13 +7,18 @@
 
 namespace LuckyPills.Effects
 {
+    using System.ComponentModel;
     using Exiled.API.Enums;
     using Exiled.API.Features;
-    using LuckyPills.API.Features;
+    using LuckyPills.API;
+    using LuckyPills.Models;
 
     /// <inheritdoc />
     public class Visuals939 : PillEffect
     {
+        /// <inheritdoc />
+        public override int Id { get; set; } = 21;
+
         /// <inheritdoc />
         public override bool IsEnabled { get; set; } = true;
 
@@ -21,17 +26,15 @@ namespace LuckyPills.Effects
         public override string Translation { get; set; } = "You've been given doge vision for {duration} seconds";
 
         /// <inheritdoc />
-        public override int MinimumDuration { get; set; } = 10;
+        public override Duration Duration { get; set; } = new(10, 20);
 
         /// <inheritdoc />
-        public override int MaximumDuration { get; set; } = 20;
-
-        /// <inheritdoc />
-        public override int Odds { get; set; } = 1;
+        public override int Weight { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the type of Scp939 visuals to give.
         /// </summary>
+        [Description("The type of Scp939 visuals to give.")]
         public byte Intensity { get; set; } = 1;
 
         /// <inheritdoc />

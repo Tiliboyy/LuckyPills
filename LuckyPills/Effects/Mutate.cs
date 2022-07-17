@@ -10,12 +10,16 @@ namespace LuckyPills.Effects
     using System.Collections.Generic;
     using Exiled.API.Enums;
     using Exiled.API.Features;
-    using LuckyPills.API.Features;
+    using LuckyPills.API;
+    using LuckyPills.Models;
 
     /// <inheritdoc />
     public class Mutate : PillEffect
     {
-        private readonly Dictionary<Player, RoleType> cachedRoles = new Dictionary<Player, RoleType>();
+        private readonly Dictionary<Player, RoleType> cachedRoles = new();
+
+        /// <inheritdoc />
+        public override int Id { get; set; } = 16;
 
         /// <inheritdoc />
         public override bool IsEnabled { get; set; } = true;
@@ -24,13 +28,10 @@ namespace LuckyPills.Effects
         public override string Translation { get; set; } = "You've been mutated for {duration} seconds";
 
         /// <inheritdoc />
-        public override int MinimumDuration { get; set; } = 5;
+        public override Duration Duration { get; set; } = new(5, 30);
 
         /// <inheritdoc />
-        public override int MaximumDuration { get; set; } = 30;
-
-        /// <inheritdoc />
-        public override int Odds { get; set; } = 1;
+        public override int Weight { get; set; } = 1;
 
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)

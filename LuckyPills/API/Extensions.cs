@@ -9,7 +9,7 @@ namespace LuckyPills.API
 {
     using System;
     using System.Collections.Generic;
-    using LuckyPills.API.Features;
+    using LuckyPills.API;
 
     /// <summary>
     /// Various extensions for <see cref="IEnumerable{T}"/>.

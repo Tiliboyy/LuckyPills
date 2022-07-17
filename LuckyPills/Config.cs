@@ -11,16 +11,15 @@ namespace LuckyPills
     using Exiled.API.Features;
     using Exiled.API.Interfaces;
     using Exiled.Loader;
-    using YamlDotNet.Serialization;
+    using LuckyPills.Configs;
 
     /// <inheritdoc />
     public class Config : IConfig
     {
         /// <summary>
-        /// Gets the configured effect config settings.
+        /// The configured effect config settings.
         /// </summary>
-        [YamlIgnore]
-        public Configs.Effects EffectConfigs { get; private set; }
+        public EffectsConfig Effects;
 
         /// <inheritdoc/>
         public bool IsEnabled { get; set; } = true;
@@ -38,22 +37,17 @@ namespace LuckyPills
         /// <summary>
         /// Loads the effect configs.
         /// </summary>
-        public void LoadEffects()
+        public void Reload()
         {
             if (!Directory.Exists(FolderPath))
                 Directory.CreateDirectory(FolderPath);
 
-            string filePath = Path.Combine(FolderPath, FileName);
-            if (!File.Exists(filePath))
-            {
-                Log.Warn("Config not found, generating.");
-                EffectConfigs = new Configs.Effects();
-                File.WriteAllText(filePath, Loader.Serializer.Serialize(EffectConfigs));
-                return;
-            }
+            string path = Path.Combine(FolderPath, FileName);
+            Effects = File.Exists(path)
+                ? Loader.Deserializer.Deserialize<Configs.EffectsConfig>(File.ReadAllText(path))
+                : new EffectsConfig();
 
-            EffectConfigs = Loader.Deserializer.Deserialize<Configs.Effects>(File.ReadAllText(filePath));
-            File.WriteAllText(filePath, Loader.Serializer.Serialize(EffectConfigs));
+            File.WriteAllText(path, Loader.Serializer.Serialize(Effects));
         }
     }
 }

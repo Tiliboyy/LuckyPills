@@ -9,12 +9,16 @@ namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
     using Exiled.API.Features.Items;
-    using LuckyPills.API.Features;
+    using LuckyPills.API;
+    using LuckyPills.Models;
     using YamlDotNet.Serialization;
 
     /// <inheritdoc />
     public class Explode : PillEffect
     {
+        /// <inheritdoc />
+        public override int Id { get; set; } = 7;
+
         /// <inheritdoc />
         public override bool IsEnabled { get; set; } = true;
 
@@ -23,14 +27,10 @@ namespace LuckyPills.Effects
 
         /// <inheritdoc />
         [YamlIgnore]
-        public override int MinimumDuration { get; set; }
+        public override Duration Duration { get; set; }
 
         /// <inheritdoc />
-        [YamlIgnore]
-        public override int MaximumDuration { get; set; }
-
-        /// <inheritdoc />
-        public override int Odds { get; set; } = 1;
+        public override int Weight { get; set; } = 1;
 
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)

@@ -10,12 +10,29 @@ namespace LuckyPills.Effects
     using System.Collections.Generic;
     using Exiled.API.Enums;
     using Exiled.API.Features;
-    using LuckyPills.API.Features;
+    using LuckyPills.API;
+    using LuckyPills.Models;
     using MEC;
 
     /// <inheritdoc />
     public class GrenadeVomit : PillEffect
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GrenadeVomit"/> class.
+        /// </summary>
+        public GrenadeVomit()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GrenadeVomit"/> class.
+        /// </summary>
+        /// <param name="grenadeType"><inheritdoc cref="GrenadeType"/></param>
+        public GrenadeVomit(GrenadeType grenadeType) => GrenadeType = grenadeType;
+
+        /// <inheritdoc />
+        public override int Id { get; set; } = 11;
+
         /// <inheritdoc />
         public override bool IsEnabled { get; set; } = true;
 
@@ -23,13 +40,10 @@ namespace LuckyPills.Effects
         public override string Translation { get; set; } = "You've been given bomb vomit for {duration} seconds";
 
         /// <inheritdoc />
-        public override int MinimumDuration { get; set; } = 5;
+        public override Duration Duration { get; set; } = new(5, 15);
 
         /// <inheritdoc />
-        public override int MaximumDuration { get; set; } = 15;
-
-        /// <inheritdoc />
-        public override int Odds { get; set; } = 1;
+        public override int Weight { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets the type of grenade to use.

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="Effects.cs" company="Build">
+// <copyright file="EffectsConfig.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
@@ -8,18 +8,22 @@
 namespace LuckyPills.Configs
 {
     using System.Collections.Generic;
+    using System.Reflection;
     using Exiled.API.Enums;
+    using LuckyPills.API;
     using LuckyPills.Effects;
 
     /// <summary>
     /// All effect config settings.
     /// </summary>
-    public class Effects
+    public class EffectsConfig
     {
+        private readonly List<PillEffect> registeredEffects = new();
+
         /// <summary>
         /// Gets or sets all amnesia effect configs.
         /// </summary>
-        public List<Amnesia> Amnesia { get; set; } = new List<Amnesia>
+        public List<Amnesia> Amnesia { get; set; } = new()
         {
             new Amnesia(),
         };
@@ -27,7 +31,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all bleed effect configs.
         /// </summary>
-        public List<Bleeding> Bleeding { get; set; } = new List<Bleeding>
+        public List<Bleeding> Bleeding { get; set; } = new()
         {
             new Bleeding(),
         };
@@ -35,7 +39,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all blindness effect configs.
         /// </summary>
-        public List<Blinded> Blinded { get; set; } = new List<Blinded>
+        public List<Blinded> Blinded { get; set; } = new()
         {
             new Blinded(),
         };
@@ -43,7 +47,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all concussion effect configs.
         /// </summary>
-        public List<Concussed> Concussed { get; set; } = new List<Concussed>
+        public List<Concussed> Concussed { get; set; } = new()
         {
             new Concussed(),
         };
@@ -51,7 +55,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all corrosion effect configs.
         /// </summary>
-        public List<Corroding> Corroding { get; set; } = new List<Corroding>
+        public List<Corroding> Corroding { get; set; } = new()
         {
             new Corroding(),
         };
@@ -59,7 +63,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all ensnare effect configs.
         /// </summary>
-        public List<Ensnared> Ensnared { get; set; } = new List<Ensnared>
+        public List<Ensnared> Ensnared { get; set; } = new()
         {
             new Ensnared(),
         };
@@ -67,7 +71,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all explosion effect configs.
         /// </summary>
-        public List<Explode> Explode { get; set; } = new List<Explode>
+        public List<Explode> Explode { get; set; } = new()
         {
             new Explode(),
         };
@@ -75,7 +79,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all flash effect configs.
         /// </summary>
-        public List<Flashed> Flashed { get; set; } = new List<Flashed>
+        public List<Flashed> Flashed { get; set; } = new()
         {
             new Flashed(),
         };
@@ -83,7 +87,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all flatten effect configs.
         /// </summary>
-        public List<Flattened> Flattened { get; set; } = new List<Flattened>
+        public List<Flattened> Flattened { get; set; } = new()
         {
             new Flattened(),
         };
@@ -91,7 +95,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all god effect configs.
         /// </summary>
-        public List<God> God { get; set; } = new List<God>
+        public List<God> God { get; set; } = new()
         {
             new God(),
         };
@@ -99,17 +103,17 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all grenade vomit effect configs.
         /// </summary>
-        public List<GrenadeVomit> GrenadeVomit { get; set; } = new List<GrenadeVomit>
+        public List<GrenadeVomit> GrenadeVomit { get; set; } = new()
         {
-            new GrenadeVomit { GrenadeType = GrenadeType.FragGrenade },
-            new GrenadeVomit { GrenadeType = GrenadeType.Flashbang },
-            new GrenadeVomit { GrenadeType = GrenadeType.Scp018 },
+            new GrenadeVomit(GrenadeType.FragGrenade),
+            new GrenadeVomit(GrenadeType.Flashbang) { Id = 12 },
+            new GrenadeVomit(GrenadeType.Scp018) { Id = 13 },
         };
 
         /// <summary>
         /// Gets or sets all hemorrhage effect configs.
         /// </summary>
-        public List<Hemorrhage> Hemorrhage { get; set; } = new List<Hemorrhage>
+        public List<Hemorrhage> Hemorrhage { get; set; } = new()
         {
             new Hemorrhage(),
         };
@@ -117,7 +121,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all invisibility effect configs.
         /// </summary>
-        public List<Invisible> Invisible { get; set; } = new List<Invisible>
+        public List<Invisible> Invisible { get; set; } = new()
         {
             new Invisible(),
         };
@@ -125,7 +129,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all mutation effect configs.
         /// </summary>
-        public List<Mutate> Mutate { get; set; } = new List<Mutate>
+        public List<Mutate> Mutate { get; set; } = new()
         {
             new Mutate(),
         };
@@ -133,7 +137,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all paper effect configs.
         /// </summary>
-        public List<Paper> Paper { get; set; } = new List<Paper>
+        public List<Paper> Paper { get; set; } = new()
         {
             new Paper(),
         };
@@ -141,7 +145,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all poison effect configs.
         /// </summary>
-        public List<Poisoned> Poisoned { get; set; } = new List<Poisoned>
+        public List<Poisoned> Poisoned { get; set; } = new()
         {
             new Poisoned(),
         };
@@ -149,7 +153,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all sinkhole effect configs.
         /// </summary>
-        public List<Sinkhole> Sinkhole { get; set; } = new List<Sinkhole>
+        public List<Sinkhole> Sinkhole { get; set; } = new()
         {
             new Sinkhole(),
         };
@@ -157,7 +161,7 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all upside down effect configs.
         /// </summary>
-        public List<UpsideDown> UpsideDown { get; set; } = new List<UpsideDown>
+        public List<UpsideDown> UpsideDown { get; set; } = new()
         {
             new UpsideDown(),
         };
@@ -165,9 +169,32 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all Scp939 visual effect configs.
         /// </summary>
-        public List<Visuals939> Visuals939 { get; set; } = new List<Visuals939>
+        public List<Visuals939> Visuals939 { get; set; } = new()
         {
             new Visuals939(),
         };
+
+        /// <summary>
+        /// Registers all pill effects in this class.
+        /// </summary>
+        public void Register()
+        {
+            foreach (PropertyInfo property in GetType().GetProperties())
+            {
+                if (property.GetValue(this) is IEnumerable<PillEffect> effects)
+                    registeredEffects.AddRange(PillEffect.RegisterEffects(effects));
+            }
+        }
+
+        /// <summary>
+        /// Unregisters all pill effects registered in this class.
+        /// </summary>
+        public void Unregister()
+        {
+            foreach (PillEffect pillEffect in registeredEffects)
+                pillEffect.Unregister();
+
+            registeredEffects.Clear();
+        }
     }
 }

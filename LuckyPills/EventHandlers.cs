@@ -1,4 +1,4 @@
-// -----------------------------------------------------------------------
+﻿// -----------------------------------------------------------------------
 // <copyright file="EventHandlers.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
@@ -7,22 +7,20 @@
 
 namespace LuckyPills
 {
-    using Exiled.Events.EventArgs;
-    using LuckyPills.API.Features;
-
     /// <summary>
     /// Handles events derived from <see cref="Exiled.Events.Handlers"/>.
     /// </summary>
     public class EventHandlers
     {
-        /// <inheritdoc cref="Exiled.Events.Handlers.Player.OnUsingItem(UsingItemEventArgs)"/>
-        public void OnUsingItem(UsingItemEventArgs ev)
-        {
-            if (ev.Item.Type == ItemType.Painkillers)
-            {
-                PillEffect.RunRandom(ev.Player);
-                ev.Player.RemoveHeldItem();
-            }
-        }
+        private readonly Plugin plugin;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventHandlers"/> class.
+        /// </summary>
+        /// <param name="plugin">An instance of the <see cref="Plugin"/> class.</param>
+        public EventHandlers(Plugin plugin) => this.plugin = plugin;
+
+        /// <inheritdoc cref="Exiled.Events.Handlers.Server.OnReloadedConfigs"/>
+        public void OnReloadedConfigs() => plugin.Config.Reload();
     }
 }
