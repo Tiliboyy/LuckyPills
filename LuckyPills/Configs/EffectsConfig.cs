@@ -105,9 +105,9 @@ namespace LuckyPills.Configs
         /// </summary>
         public List<GrenadeVomit> GrenadeVomit { get; set; } = new()
         {
-            new GrenadeVomit(GrenadeType.FragGrenade),
-            new GrenadeVomit(GrenadeType.Flashbang) { Id = 12 },
-            new GrenadeVomit(GrenadeType.Scp018) { Id = 13 },
+            new GrenadeVomit(ProjectileType.FragGrenade),
+            new GrenadeVomit(ProjectileType.Flashbang) { Id = 12 },
+            new GrenadeVomit(ProjectileType.Scp018) { Id = 13 },
         };
 
         /// <summary>
@@ -116,14 +116,6 @@ namespace LuckyPills.Configs
         public List<Hemorrhage> Hemorrhage { get; set; } = new()
         {
             new Hemorrhage(),
-        };
-
-        /// <summary>
-        /// Gets or sets all invisibility effect configs.
-        /// </summary>
-        public List<Invisible> Invisible { get; set; } = new()
-        {
-            new Invisible(),
         };
 
         /// <summary>
@@ -169,11 +161,6 @@ namespace LuckyPills.Configs
         /// <summary>
         /// Gets or sets all Scp939 visual effect configs.
         /// </summary>
-        public List<Visuals939> Visuals939 { get; set; } = new()
-        {
-            new Visuals939(),
-        };
-
         /// <summary>
         /// Registers all pill effects in this class.
         /// </summary>

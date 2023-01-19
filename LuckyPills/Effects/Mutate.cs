@@ -5,6 +5,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using PlayerRoles;
+
 namespace LuckyPills.Effects
 {
     using System.Collections.Generic;
@@ -16,7 +18,7 @@ namespace LuckyPills.Effects
     /// <inheritdoc />
     public class Mutate : PillEffect
     {
-        private readonly Dictionary<Player, RoleType> cachedRoles = new();
+        private readonly Dictionary<Player, RoleTypeId> cachedRoles = new();
 
         /// <inheritdoc />
         public override int Id { get; set; } = 16;
@@ -38,14 +40,14 @@ namespace LuckyPills.Effects
         {
             cachedRoles[player] = player.Role;
             player.DropItems();
-            player.SetRole(RoleType.Scp0492, SpawnReason.ForceClass, true);
+            player.Role.Set(RoleTypeId.Scp0492, SpawnReason.ForceClass, RoleSpawnFlags.None);
         }
 
         /// <inheritdoc />
         protected override void OnDisabled(Player player)
         {
-            if (!player.IsDead && cachedRoles.TryGetValue(player, out RoleType role))
-                player.SetRole(role, SpawnReason.ForceClass, true);
+            if (!player.IsDead && cachedRoles.TryGetValue(player, out RoleTypeId role))
+                player.Role.Set(role, SpawnReason.ForceClass, RoleSpawnFlags.None);
         }
     }
 }

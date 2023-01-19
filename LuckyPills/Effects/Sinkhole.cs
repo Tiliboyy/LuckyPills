@@ -32,13 +32,13 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)
         {
-            player.EnableEffect<CustomPlayerEffects.SinkHole>(duration);
+            player.EnableEffect<CustomPlayerEffects.Sinkhole>(duration);
         }
 
         /// <inheritdoc />
         protected override void OnDisabled(Player player)
         {
-            player.DisableEffect<CustomPlayerEffects.SinkHole>();
+            player.DisableEffect<CustomPlayerEffects.Sinkhole>();
         }
     }
 }

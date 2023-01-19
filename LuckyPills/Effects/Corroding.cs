@@ -34,7 +34,6 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)
         {
-            player.ReferenceHub.scp106PlayerScript.GrabbedPosition = player.Position;
             player.EnableEffect<CustomPlayerEffects.Corroding>();
         }
     }

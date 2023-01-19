@@ -5,6 +5,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System;
+
 namespace LuckyPills
 {
     using System.IO;
@@ -14,12 +16,18 @@ namespace LuckyPills
     using LuckyPills.Configs;
 
     /// <inheritdoc />
+    [Serializable]
     public class Config : IConfig
     {
         /// <summary>
         /// The configured effect config settings.
         /// </summary>
         public EffectsConfig Effects;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether debug
+        /// </summary>
+        public bool Debug { get; set; } = false;
 
         /// <inheritdoc/>
         public bool IsEnabled { get; set; } = true;

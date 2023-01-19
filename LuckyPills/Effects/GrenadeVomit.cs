@@ -28,7 +28,7 @@ namespace LuckyPills.Effects
         /// Initializes a new instance of the <see cref="GrenadeVomit"/> class.
         /// </summary>
         /// <param name="grenadeType"><inheritdoc cref="GrenadeType"/></param>
-        public GrenadeVomit(GrenadeType grenadeType) => GrenadeType = grenadeType;
+        public GrenadeVomit(ProjectileType grenadeType) => GrenadeType = grenadeType;
 
         /// <inheritdoc />
         public override int Id { get; set; } = 11;
@@ -40,7 +40,7 @@ namespace LuckyPills.Effects
         public override string Translation { get; set; } = "You've been given bomb vomit for {duration} seconds";
 
         /// <inheritdoc />
-        public override Duration Duration { get; set; } = new(5, 15);
+        public override Duration Duration { get; set; } = new(3, 3);
 
         /// <inheritdoc />
         public override int Weight { get; set; } = 1;
@@ -48,12 +48,12 @@ namespace LuckyPills.Effects
         /// <summary>
         /// Gets or sets the type of grenade to use.
         /// </summary>
-        public GrenadeType GrenadeType { get; set; } = GrenadeType.FragGrenade;
+        public ProjectileType GrenadeType { get; set; } = ProjectileType.Flashbang;
 
         /// <summary>
         /// Gets or sets the amount of grenades a player should eject per second.
         /// </summary>
-        public int GrenadesPerSecond { get; set; } = 10;
+        public int GrenadesPerSecond { get; set; } = 1;
 
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)

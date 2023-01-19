@@ -32,13 +32,18 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)
         {
-            player.EnableEffect<CustomPlayerEffects.Amnesia>(duration);
+            player.EnableEffect<CustomPlayerEffects.AmnesiaItems>(duration);
+
+            player.EnableEffect<CustomPlayerEffects.AmnesiaVision>(duration);
+
         }
 
         /// <inheritdoc />
         protected override void OnDisabled(Player player)
         {
-            player.DisableEffect<CustomPlayerEffects.Amnesia>();
+            player.DisableEffect<CustomPlayerEffects.AmnesiaItems>();
+
+            player.DisableEffect<CustomPlayerEffects.AmnesiaVision>();
         }
     }
 }
