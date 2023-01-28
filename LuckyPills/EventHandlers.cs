@@ -5,6 +5,11 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using Exiled.Events.EventArgs.Player;
+using Exiled.Events.Handlers;
+using LuckyPills.API;
+using MEC;
+
 namespace LuckyPills
 {
     /// <summary>
@@ -22,5 +27,20 @@ namespace LuckyPills
 
         /// <inheritdoc cref="Exiled.Events.Handlers.Server.OnReloadedConfigs"/>
         public void OnReloadedConfigs() => plugin.Config.Reload();
+
+        /// <summary>
+        /// yes
+        /// </summary>
+        /// <param name="ev"></param>
+        public void UsingItem(UsingItemEventArgs ev)
+        {
+            if(ev.Item.Type != ItemType.Painkillers) return;
+            Timing.CallDelayed(0.4f, () =>
+            {
+                PillEffect.RunRandom(ev.Player);
+                ev.Player.RemoveItem(ev.Item);
+            });
+
+        }
     }
 }

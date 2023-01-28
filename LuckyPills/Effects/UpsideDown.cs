@@ -22,7 +22,7 @@ namespace LuckyPills.Effects
         public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public override string Translation { get; set; } = "You've been converted to australian for {duration} seconds";
+        public override string Translation { get; set; } = "Du wurdest für {duration} Sekunden umgedreht!";
 
         /// <inheritdoc />
         public override Duration Duration { get; set; } = new(5, 30);

@@ -19,14 +19,7 @@ namespace LuckyPills.Configs
     public class EffectsConfig
     {
         private readonly List<PillEffect> registeredEffects = new();
-
-        /// <summary>
-        /// Gets or sets all amnesia effect configs.
-        /// </summary>
-        public List<Amnesia> Amnesia { get; set; } = new()
-        {
-            new Amnesia(),
-        };
+        
 
         /// <summary>
         /// Gets or sets all bleed effect configs.
@@ -50,14 +43,6 @@ namespace LuckyPills.Configs
         public List<Concussed> Concussed { get; set; } = new()
         {
             new Concussed(),
-        };
-
-        /// <summary>
-        /// Gets or sets all corrosion effect configs.
-        /// </summary>
-        public List<Corroding> Corroding { get; set; } = new()
-        {
-            new Corroding(),
         };
 
         /// <summary>
@@ -111,22 +96,6 @@ namespace LuckyPills.Configs
         };
 
         /// <summary>
-        /// Gets or sets all hemorrhage effect configs.
-        /// </summary>
-        public List<Hemorrhage> Hemorrhage { get; set; } = new()
-        {
-            new Hemorrhage(),
-        };
-
-        /// <summary>
-        /// Gets or sets all mutation effect configs.
-        /// </summary>
-        public List<Mutate> Mutate { get; set; } = new()
-        {
-            new Mutate(),
-        };
-
-        /// <summary>
         /// Gets or sets all paper effect configs.
         /// </summary>
         public List<Paper> Paper { get; set; } = new()
@@ -156,6 +125,13 @@ namespace LuckyPills.Configs
         public List<UpsideDown> UpsideDown { get; set; } = new()
         {
             new UpsideDown(),
+        };
+        /// <summary>
+        /// Gets or sets all Morepills Effects
+        /// </summary>
+        public List<MorePills> MorePills { get; set; } = new()
+        {
+            new MorePills(),
         };
 
         /// <summary>

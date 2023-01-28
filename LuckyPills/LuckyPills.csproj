@@ -13,9 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EXILED" Version="6.0.0-beta.24" />
+    <PackageReference Include="EXILED" Version="6.0.0-beta.25" />
     <PackageReference Include="Lib.Harmony" Version="2.2.2" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     <PackageReference Include="YamlDotNet" Version="12.3.1" />
   </ItemGroup>
 
@@ -25,6 +24,9 @@
     </Reference>
     <Reference Include="CommandSystem.Core">
       <HintPath>..\..\..\Documents\Assembly\CommandSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MapEditorReborn">
+      <HintPath>..\..\..\Downloads\MapEditorReborn.dll</HintPath>
     </Reference>
     <Reference Include="Mirror">
       <HintPath>..\..\..\Documents\Assembly\Mirror.dll</HintPath>

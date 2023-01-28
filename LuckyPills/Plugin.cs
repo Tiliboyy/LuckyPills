@@ -44,6 +44,7 @@ namespace LuckyPills
             harmony.PatchAll();
 
             eventHandlers = new EventHandlers(this);
+            Exiled.Events.Handlers.Player.UsingItem += eventHandlers.UsingItem;
             Exiled.Events.Handlers.Server.ReloadedConfigs += eventHandlers.OnReloadedConfigs;
 
             base.OnEnabled();
@@ -55,8 +56,8 @@ namespace LuckyPills
             Config.Effects.Unregister();
 
             Exiled.Events.Handlers.Server.ReloadedConfigs -= eventHandlers.OnReloadedConfigs;
+            Exiled.Events.Handlers.Player.UsingItem -= eventHandlers.UsingItem;
             eventHandlers = null;
-
             harmony.UnpatchAll(harmony.Id);
             harmony = null;
 

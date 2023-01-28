@@ -56,15 +56,16 @@ namespace LuckyPills.API
         /// <param name="player">The player to run the effect on.</param>
         public static void RunRandom(Player player)
         {
-            List<PillEffect> enabled = Registered.Where(effect => effect.IsEnabled).ToList();
+            var enabled = Registered.Where(effect => effect.IsEnabled).ToList();
             if (enabled.Count == 0)
             {
                 Log.Warn("There are no enabled effects to select.");
                 return;
             }
 
-            PillEffect selectedEffect = enabled[Loader.Random.Next(enabled.Count)];
+            var selectedEffect = enabled[Loader.Random.Next(enabled.Count)];
             int duration = selectedEffect.Duration?.Get() ?? 0;
+            Log.Debug(selectedEffect.Translation);
             selectedEffect.OnEnabled(player, duration);
             player.ShowHint(selectedEffect.Translation.Replace("{duration}", duration.ToString()));
             Timing.CallDelayed(duration, () => selectedEffect.OnDisabled(player));

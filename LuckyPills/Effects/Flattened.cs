@@ -22,7 +22,7 @@ namespace LuckyPills.Effects
         public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public override string Translation { get; set; } = "You've been flattened for {duration} seconds";
+        public override string Translation { get; set; } = "Du wurdest für {duration} Sekunden flach!";
 
         /// <inheritdoc />
         public override Duration Duration { get; set; } = new(10, 30);

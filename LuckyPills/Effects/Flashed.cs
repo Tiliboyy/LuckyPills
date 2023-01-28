@@ -21,7 +21,7 @@
         public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public override string Translation { get; set; } = "You've been flashed";
+        public override string Translation { get; set; } = "Du wurdest geblendet!";
 
         /// <inheritdoc />
         public override Duration Duration { get; set; } = new(5, 10);

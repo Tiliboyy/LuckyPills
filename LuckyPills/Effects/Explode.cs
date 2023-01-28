@@ -23,7 +23,7 @@ namespace LuckyPills.Effects
         public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public override string Translation { get; set; } = "You've spontaneously combusted";
+        public override string Translation { get; set; } = "Du bist Expodiert!";
 
         /// <inheritdoc />
         [YamlIgnore]

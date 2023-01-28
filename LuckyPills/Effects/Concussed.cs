@@ -21,7 +21,7 @@ namespace LuckyPills.Effects
         public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public override string Translation { get; set; } = "You've been concussed for {duration} seconds";
+        public override string Translation { get; set; } = "Du wurdest für {duration} Sekunden erschüttert!";
 
         /// <inheritdoc />
         public override Duration Duration { get; set; } = new(10, 20);
