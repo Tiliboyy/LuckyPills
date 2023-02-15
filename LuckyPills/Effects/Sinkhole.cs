@@ -7,12 +7,13 @@
 
 
 using CustomPlayerEffects;
+using PluginAPI.Core.Zones.Pocket;
 
 namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
-    using LuckyPills.API;
-    using LuckyPills.Models;
+    using API;
+    using Models;
     
     /// <inheritdoc />
     public class Sinkhole : PillEffect
@@ -35,13 +36,15 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)
         {
-            player.EnableEffect<Corroding>(duration);
+            
+            player.EnableEffect<Traumatized>(180f);
+            player.EnableEffect<Corroding>(0, false);
         }
 
         /// <inheritdoc />
         protected override void OnDisabled(Player player)
         {
-            player.DisableEffect<Corroding>();
+            
         }
     }
 }

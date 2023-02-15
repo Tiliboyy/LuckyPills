@@ -118,7 +118,13 @@ namespace LuckyPills.Configs
         {
             new Sinkhole(),
         };
-
+        /// <summary>
+        /// Hands
+        /// </summary>
+        public List<Hand> Hand { get; set; } = new()
+        {
+            new Hand(),
+        };
         /// <summary>
         /// Gets or sets all upside down effect configs.
         /// </summary>
