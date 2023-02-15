@@ -36,7 +36,7 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)
         {
-            
+            player.IsGodModeEnabled = false;   
             player.EnableEffect<Traumatized>(180f);
             player.EnableEffect<Corroding>(0, false);
         }

@@ -8,8 +8,8 @@
 namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
-    using LuckyPills.API;
-    using LuckyPills.Models;
+    using API;
+    using Models;
 
     /// <inheritdoc />
     public class God : PillEffect
@@ -32,6 +32,8 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)
         {
+            if(player.IsInPocketDimension)
+                return;
             player.IsGodModeEnabled = true;
         }
 
