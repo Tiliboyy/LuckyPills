@@ -67,9 +67,13 @@ namespace LuckyPills.Effects
             for (int i = 0; i < duration * GrenadesPerSecond; i++)
             {
                 if (!player.IsAlive)
+                {
+                    player.IsGodModeEnabled = false;
                     yield break;
-
+                }
+                player.IsGodModeEnabled = true;
                 player.ThrowGrenade(GrenadeType);
+                player.IsGodModeEnabled = false;
                 yield return Timing.WaitForSeconds(delayTime);
             }
         }
