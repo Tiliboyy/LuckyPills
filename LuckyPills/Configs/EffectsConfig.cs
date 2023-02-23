@@ -54,14 +54,6 @@ namespace LuckyPills.Configs
         };
 
         /// <summary>
-        /// Gets or sets all explosion effect configs.
-        /// </summary>
-        public List<Explode> Explode { get; set; } = new()
-        {
-            new Explode(),
-        };
-
-        /// <summary>
         /// Gets or sets all flash effect configs.
         /// </summary>
         public List<Flashed> Flashed { get; set; } = new()
@@ -110,14 +102,7 @@ namespace LuckyPills.Configs
         {
             new Poisoned(),
         };
-
-        /// <summary>
-        /// Gets or sets all sinkhole effect configs.
-        /// </summary>
-        public List<Sinkhole> Sinkhole { get; set; } = new()
-        {
-            new Sinkhole(),
-        };
+        
         /// <summary>
         /// Hands
         /// </summary>
@@ -139,6 +124,29 @@ namespace LuckyPills.Configs
         {
             new MorePills(),
         };
+        /// <summary>
+        /// Gets or sets all Heal Effects
+        /// </summary>
+        public List<Heal> Heal { get; set; } = new()
+        {
+            new Heal(),
+        };
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<Teleport> RandomSCPTeleport { get; set; } = new()
+        {
+            new Teleport(),
+        };
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<Speed> Speed { get; set; } = new()
+        {
+            new Speed(),
+        };
+
 
         /// <summary>
         /// Gets or sets all Scp939 visual effect configs.

@@ -1,29 +1,30 @@
 // -----------------------------------------------------------------------
-// <copyright file="God.cs" company="Build">
+// <copyright file="UpsideDown.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
 // -----------------------------------------------------------------------
 
-using CustomPlayerEffects;
+using System.Linq;
 
 namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
     using LuckyPills.API;
     using LuckyPills.Models;
+    using UnityEngine;
 
     /// <inheritdoc />
-    public class Hand : PillEffect
+    public class Teleport : PillEffect
     {
         /// <inheritdoc />
-        public override int Id { get; set; } = 29;
+        public override int Id { get; set; } = 26;
 
         /// <inheritdoc />
         public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public override string Translation { get; set; } = "Du hast deine Hände verloren!";
+        public override string Translation { get; set; } = "Du wurdest zu einem zufälligen SCP teleportiert!";
 
         /// <inheritdoc />
         public override Duration Duration { get; set; }
@@ -34,7 +35,14 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)
         {
-            player.EnableEffect<SeveredHands>(1f);
+            var list = Player.List.Where(x => x.IsScp).ToList();
+            if (list.Count == 0)
+            {
+                player.ShowHint("Es konnte kein lebendes SCP gefunden werden.");
+                return;
+            }
+            var scp = list[Random.Range(0, list.Count - 1)];
+            player.Position = scp.Position;
         }
     }
 }

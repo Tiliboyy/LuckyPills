@@ -1,34 +1,33 @@
 // -----------------------------------------------------------------------
-// <copyright file="Sinkhole.cs" company="Build">
+// <copyright file="UpsideDown.cs" company="Build">
 // Copyright (c) Build. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
 // -----------------------------------------------------------------------
 
-
 using CustomPlayerEffects;
-using PluginAPI.Core.Zones.Pocket;
 
 namespace LuckyPills.Effects
 {
     using Exiled.API.Features;
-    using API;
-    using Models;
-    
+    using LuckyPills.API;
+    using LuckyPills.Models;
+    using UnityEngine;
+
     /// <inheritdoc />
-    public class Sinkhole : PillEffect
+    public class Speed : PillEffect
     {
         /// <inheritdoc />
-        public override int Id { get; set; } = 19;
+        public override int Id { get; set; } = 28;
 
         /// <inheritdoc />
         public override bool IsEnabled { get; set; } = true;
 
         /// <inheritdoc />
-        public override string Translation { get; set; } = "Du wurdest in die Pocket Dimension geschickt!";
+        public override string Translation { get; set; } = "Du wurdest für {duration} Sekunden ein extrem schnell!";
 
         /// <inheritdoc />
-        public override Duration Duration { get; set; } = new(10, 20);
+        public override Duration Duration { get; set; } = new(5, 15);
 
         /// <inheritdoc />
         public override int Weight { get; set; } = 1;
@@ -36,15 +35,9 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)
         {
-            player.IsGodModeEnabled = false;   
-            player.EnableEffect<Traumatized>(180f);
-            player.EnableEffect<Corroding>(0, false);
+            player.ChangeEffectIntensity<MovementBoost>(255, duration);
         }
 
-        /// <inheritdoc />
-        protected override void OnDisabled(Player player)
-        {
-            
-        }
+
     }
 }
