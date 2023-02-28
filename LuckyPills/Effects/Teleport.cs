@@ -6,6 +6,7 @@
 // -----------------------------------------------------------------------
 
 using System.Linq;
+using PlayerRoles;
 
 namespace LuckyPills.Effects
 {
@@ -35,7 +36,7 @@ namespace LuckyPills.Effects
         /// <inheritdoc />
         protected override void OnEnabled(Player player, int duration)
         {
-            var list = Player.List.Where(x => x.IsScp).ToList();
+            var list = Player.List.Where(x => x.IsScp && x.Role.Type != RoleTypeId.Scp079).ToList();
             if (list.Count == 0)
             {
                 player.ShowHint("Es konnte kein lebendes SCP gefunden werden.");
